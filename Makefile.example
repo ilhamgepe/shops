@@ -1,0 +1,15 @@
+build:
+	@go build -o tmp/main.exe cmd/api/main.go
+run: build
+	@./tmp/main.exe
+watch:
+	@air
+
+createMigrate:
+	migrate create -ext sql -dir internal/database/migrations $(name)
+migrateUp:
+	migrate -database "mysql://user:password@tcp(localhost:3306)/shops" -path internal/database/migrations up
+migrateDown:
+	migrate -database "mysql://user:password@tcp(localhost:3306)/shops" -path internal/database/migrations down
+migrateV:
+	migrate -database "mysql://user:password@tcp(localhost:3306)/shops" -path internal/database/migrations version
