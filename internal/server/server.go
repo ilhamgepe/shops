@@ -19,7 +19,7 @@ type FiberServer struct {
 
 func New(db *sqlx.DB) *FiberServer {
 	app := fiber.New(fiber.Config{
-		Prefork:      true,
+		Prefork:      false,
 		ServerHeader: fmt.Sprintf("x-%s", config.Get.APP_NAME),
 		AppName:      config.Get.APP_NAME,
 	})
